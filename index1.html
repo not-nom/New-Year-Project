@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies are tasty</title>
+</head>
+
+<body>
+    <a href="./index.html">Back to main</a>
+    <button id="button">Save Background Color(SBC)</button>
+    <button id="button1">Show New Background Color(SNBC)</button>
+    <input id="input" type="text">
+    <script>
+        document.getElementById("button").addEventListener("click", cookieSave);
+        document.getElementById("button1").addEventListener("click", changeBackground);
+        let y = "";
+        let cookieSaved = document.cookie;
+            let x = cookieSaved.split("; ");
+            let txt = x[0];
+            console.log(txt);
+            for(let z = 16;z < txt.length;z++){
+                y = y + txt[z];
+                console.log(y);
+            }
+            document.querySelector("body").style.backgroundColor = y;
+            txt = "";
+            y = "";
+
+
+        function cookieSave() {
+            let selectedBackgroundColor = document.getElementById("input").value;
+            document.cookie = "backgroundColor=" + selectedBackgroundColor;
+        }
+
+        function changeBackground() {
+            let cookieSaved = document.cookie;
+            let x = cookieSaved.split("; ");
+            let txt = x[0];
+            console.log(txt);
+            for(let z = 16;z < txt.length;z++){
+                y = y + txt[z];
+                console.log(y);
+            }
+            document.querySelector("body").style.backgroundColor = y;
+            txt = "";
+            y = "";
+        }
+    </script>
+</body>
+
+</html>

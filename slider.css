@@ -1,0 +1,32 @@
+body{
+    width: 100vh;
+    height: auto;
+}
+.slider{
+    width: 50%;
+    margin: 5%;
+    position: relative;
+}
+img{
+    width: 600px;
+    max-width: 200%;
+    height: auto;
+    border: 10px solid black;;
+}
+.inv{
+    display:none;
+}
+.div{
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+}
+button{
+    margin: 10px;
+    cursor: grabbing;
+    width: 290px;
+    height: 30px;
+    background-color: lightseagreen;
+    color: darkslategrey;
+    font-size: 20;
+}

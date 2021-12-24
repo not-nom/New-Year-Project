@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #area {
+            width: 300px;
+            height: 300px;
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgb(204, 145, 7);
+            box-sizing: border-box;
+            font-size: 90px;
+            color: rgb(204, 145, 7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #button{
+            width: 300px;
+            height: 100px;
+            background-color: black;
+            border: 1px solid rgb(204, 145, 7);
+            box-sizing: border-box;
+            font-size: 90px;
+            color: rgb(204, 145, 7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .underGame{
+            width: 300px;
+            height: 50px;
+            background-color: black;
+            border: 1px solid rgb(204, 145, 7);
+            box-sizing: border-box;
+            font-size: 20px;
+            color: rgb(204, 145, 7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="area-wrapper">
+        <div id="area">
+            <div class="box" id="0"></div>
+            <div class="box" id="1"></div>
+            <div class="box" id="2"></div>
+            <div class="box" id="3"></div>
+            <div class="box" id="4"></div>
+            <div class="box" id="5"></div>
+            <div class="box" id="6"></div>
+            <div class="box" id="7"></div>
+            <div class="box" id="8"></div>
+        </div>
+        <button id="button">Reset</button>
+        <div id="screen" class="underGame"></div>
+        <div id="playerwins" class="underGame"></div>
+        <div class="underGame"><a href="index.html"> Return to main </a></div>
+    </div>
+    <script>
+        let Xwins = 0;
+        let Owins = 0;
+        let xx = [0];
+        let checkPiece = 0;
+        const winner = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+        const area = document.getElementById('area');
+        let move = 0;
+        document.getElementById("button").addEventListener('click', e => {
+            for(let z = 0;z < document.querySelectorAll(".box").length; z++){
+                document.getElementById(""+z).innerHTML = "";
+                document.getElementById(""+z).style.cursor = "auto";
+                xx[z] = 0;
+            }
+            checkPiece = 0; 
+            move = 0 ;             
+        })
+        area.addEventListener('click', e => {
+            if(checkPiece == 1){
+
+            }
+            else{ if (e.target.innerHTML == "") {
+                if (e.target.className = 'box') {
+                    e.target.style.cursor = 'not-allowed';
+                    if (move % 2 === 0) {
+                        e.target.innerHTML = 'X'
+                    } else {
+                        e.target.innerHTML = 'O';
+                    }
+                    move++;
+                }
+            }
+            for(let x = 0;x<winner.length;x++){
+                if( document.getElementById(winner[x][0]).innerHTML === "X" && document.getElementById(winner[x][1]).innerHTML === "X" && document.getElementById(winner[x][2]).innerHTML === "X" ){
+                    document.getElementById("screen").innerHTML = "X wins";
+                    checkPiece = 1;
+                    Xwins++;
+                }
+                if( document.getElementById(winner[x][0]).innerHTML === "O" && document.getElementById(winner[x][1]).innerHTML === "O" && document.getElementById(winner[x][2]).innerHTML === "O" ){
+                    document.getElementById("screen").innerHTML = "O wins";
+                    checkPiece = 1;
+                    Owins++;
+                }
+                let text = "X wins = "+Xwins+" and O wins = "+Owins;
+                document.getElementById("playerwins").innerHTML = text;
+            }
+            for(let y = 0; y < document.querySelectorAll(".box").length;y++){
+                if(document.getElementById(y).innerHTML != ""){
+                    xx[y] = 1;
+                }
+            }
+            if(xx[0] == 1 && xx[1] == 1 && xx[2] == 1 && xx[3] == 1 && xx[4] == 1 && xx[5] == 1 && xx[6] == 1 && xx[7] == 1 && xx[8] == 1 && checkPiece != 1){
+                document.getElementById("screen").innerHTML = "Nobody wins";
+                checkPiece = 1;
+            }
+        }});
+    </script>
+</body>
+
+</html>
